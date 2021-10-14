@@ -1,0 +1,36 @@
+﻿@model Parking.Web.ViewModels.Places.ListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div align="center">
+        <h3>Выберите парковочное место</h3>
+        <div class="col-md-4 mx-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Places.FirstOrDefault().Column)</th>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Places.FirstOrDefault().Row)</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.Places)
+                    {
+                    <tr>
+                        <td>@item.Column</td>
+                        <td>@item.Row</td>
+                        <td>
+                            <form method="post" asp-controller="CheckIns" asp-action="CheckIn" asp-all-route-data='new Dictionary<string,string> { { "placeId", item.Id.ToString() }}'>
+                                <input class="btn btn-outline-secondary" type="submit" value="Выбрать" />
+                            </form>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

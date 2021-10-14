@@ -1,0 +1,18 @@
+﻿@model MapViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="col-md-4 mx-auto">
+    @{await Html.RenderPartialAsync("../Places/Map", Model);}
+    <a class="btn btn-outline-dark btn-lg btn-block" asp-controller="Places" asp-action="ListMyPlaces">
+        Припарковаться на своем месте
+    </a>
+    <p></p>
+    <a class="btn btn-outline-dark btn-lg btn-block" asp-controller="Places" asp-action="ListFreePlaces">
+        Припарковаться на другом месте
+    </a>
+    <p></p>
+    <a class="btn btn-outline-dark btn-lg btn-block" asp-controller="Accounts" asp-action="ChangePassword">
+        Изменить пароль
+    </a>
+</div>

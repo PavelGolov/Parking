@@ -1,0 +1,53 @@
+﻿@model List<Parking.Web.ViewModels.Places.IndexViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div align="center">
+        <h3>Парковочные места</h3>
+        <div class="col-md-4 mx-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().Place.Column)</th>
+                        <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().Place.Row)</th>
+                        <th scope="col">Сотрудники</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Place.Column</td>
+                        <td>@item.Place.Row</td>
+                        @if (item.Users.Count == 0)
+                        {
+                            <td>
+                                Нет сотрудников
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @foreach (var Person in item.Users)
+                                {
+
+                                    <a class="blog-header-logo text-dark" href=""> @Person.FirstName <span> </span> @Person.LastName<br /></a>
+                                    <a class="blog-header-logo text-black-50" asp-controller="Places" asp-action="DeleteOwner" asp-all-route-data='new Dictionary<string, string> { { "placeId", item.Place.Id.ToString() }, { "userId", Person.Id.ToString() } }'>Удалить</a> <br />
+
+                                }
+                            </td>
+                        }
+                        <td><a class="blog-header-logo text-black-50" asp-controller="Places" asp-action="AddOwner" asp-route-placeId="@item.Place.Id">Добавить сотрудника</a></td>
+                        <td><a class="blog-header-logo text-dark" asp-controller="Places" asp-action="Delete" asp-route-placeId="@item.Place.Id">Удалить место</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <a class="btn btn-secondary btn-lg btn-block" asp-controller="Places" asp-action="Create">Добавить место</a>
+        </div>
+    </div>
+</div>
