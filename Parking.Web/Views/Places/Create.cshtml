@@ -1,0 +1,20 @@
+﻿@model PlaceViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="col-md-4 mx-auto">
+    <h3 class="h3 mb-3 fw-normal">Введите номер парковочного места</h3>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="Column" class="control-label"></label>
+        <input asp-for="Column" class="form-control">
+        <span asp-validation-for="Column" class="text-danger"></span>
+        <p></p>
+        <label asp-for="Row" class="control-label"></label>
+        <input asp-for="Row" class="form-control">
+        <span asp-validation-for="Row" class="text-danger"></span>
+        <p></p>
+        <button type="submit" class="btn btn-secondary btn-lg btn-block">Создать</button>
+    </form>
+</div>
+

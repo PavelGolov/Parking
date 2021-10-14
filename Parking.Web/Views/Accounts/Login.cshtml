@@ -1,0 +1,40 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Authorization";
+}
+<div class="col-md-4 mx-auto">
+    <form method="post" asp-controller="Accounts" asp-action="Login">
+        <h3 class="h3 mb-3 fw-normal">Войдите в систему</h3>
+        <div>
+            <select asp-for="Role" class="form-select" id="country" required="">
+                >
+                <option value="">Выбрать роль</option>
+                <option>Сотрудник</option>
+                <option>Офис менеджер</option>
+            </select>
+            <div class="invalid-feedback">
+                Пожалуйста, выберите роль.
+            </div>
+            <span id="3" class="text-danger"></span>
+        </div>
+        <p></p>
+        <div class="form-floating">
+            <input class="form-control" asp-for="Email">
+            <label for="floatingInput">Логин</label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <p></p>
+        <div class="form-floating">
+            <input asp-for="Password" class="form-control">
+            <label for="floatingPassword">Пароль</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <p></p>
+        <div class="checkbox mb-3 ">
+            <label>
+                <input asp-for="RememberMe"> Запомнить меня
+            </label>
+        </div>
+        <button class="btn btn-secondary btn-lg btn-block" type="submit">Войти</button>
+    </form>
+</div>

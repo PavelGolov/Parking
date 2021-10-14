@@ -1,0 +1,41 @@
+﻿@model PersonViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="col-md-4 mx-auto">
+    <h3 class="h3 mb-3 fw-normal">Заполните личные данные</h3>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label for="firstName" class="form-label">Имя</label>
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="lastName" class="form-label">Фамилия</label>
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <label for="contactNumber" class="form-label">Номер телефона</label>
+                <input asp-for="ContactNumber" class="form-control">
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="login" class="form-label">Логин</label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <p></p>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-lg btn-block">Изменить</button>
+    </form>
+</div>
+

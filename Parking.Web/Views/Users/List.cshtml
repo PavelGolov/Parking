@@ -1,0 +1,37 @@
+﻿@model List<Parking.Web.ViewModels.Users.IndexViewModel>
+@{
+    ViewData["Title"] = "Change Persons";
+}
+<div class="row">
+    @{
+        foreach (var item in Model)
+        {
+
+            <div class="col-lg-4">
+                <div align="center">
+                    <h5><a class="blog-header-logo text-dark" href ="">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</a></h5>
+                    @if (!item.IsOfficeManager)
+                    {
+                        <strong>Сотрудник</strong>
+                        <p>@Html.DisplayFor(modelItem => item.Email)<br />@Html.DisplayFor(modelItem => item.ContactNumber)</p>
+                        <a class="btn btn-outline-secondary" asp-controller="Roles" asp-action="AddOfficeManager" asp-route-userId="@item.Id">Сделать офис менеджером</a><br />
+                    }
+                    else
+                    {
+                        <strong>Офис менеджер</strong>
+                        <p>@Html.DisplayFor(modelItem => item.Email)<br />@Html.DisplayFor(modelItem => item.ContactNumber)</p>
+
+                        <a class="btn btn-outline-secondary" asp-controller="Roles" asp-action="RemoveOfficeManager" asp-route-userId="@item.Id">Сделать сотрудником</a><br />
+                    }
+                    <a class="btn btn-outline-secondary" asp-controller="Users" asp-action="Edit" asp-route-userId="@item.Id">Изменить</a>
+                    <a class="btn btn-outline-secondary" asp-controller="Accounts" asp-action="Delete" asp-route-userId="@item.Id">Удалить</a>
+
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div class="col-md-4 mx-auto">
+    <a class="btn btn-secondary btn-lg btn-block" asp-controller="Accounts" asp-action="Register">Добавить сотрудника</a>
+</div>

@@ -1,0 +1,64 @@
+﻿@model MapViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .container-1 {
+        display: flex;
+    }
+
+        .container-1 div {
+            padding: 10px;
+            border: 1px solid silver;
+        }
+
+    .box-1 {
+        flex: 1;
+        order: 2;
+        background-color: gainsboro
+    }
+
+    .box-2 {
+        flex: 1;
+        order: 2;
+        background-color: green
+    }
+
+    .box-3 {
+        flex: 1;
+        order: 2;
+        background-color: white;
+    }
+</style>
+
+<h4 align="center">Схематичная карта парковки</h4>
+<p></p>
+    <div class="container-1">
+        <div class="box-3"></div>
+        @for (var j = 0; j < Model.Places.GetLength(0); j++)
+        {
+            <div class="box-3">@(j + 1)</div>
+        }
+    </div>
+@for (var i = 0; i < Model.Places.GetLength(1); i++)
+{
+    <div class="container-1">
+        <div class="box-3">@((i + 1))</div>
+        @for (var j = 0; j < Model.Places.GetLength(0); j++)
+        {
+            if (Model.Places[j,i] == PlaceStates.Occupied)
+            {
+                <div class="box-2"></div>
+            }
+            if (Model.Places[j, i] == PlaceStates.Free)
+            {
+                <div class="box-1"></div>
+            }
+            if (Model.Places[j, i] == PlaceStates.None)
+            {
+                <div class="box-3"></div>
+            }
+        }
+    </div>
+}
+

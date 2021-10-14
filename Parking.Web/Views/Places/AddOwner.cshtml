@@ -1,0 +1,27 @@
+﻿@model Parking.Web.ViewModels.Places.IndexViewModel
+@{
+    ViewData["Title"] = "Change Persons";
+}
+<div class="row">
+    @{
+        if (Model.Users.Count() > 0)
+            foreach (var item in Model.Users)
+            {
+
+                <div class="col-lg-4">
+                    <div align="center">
+                        <h5><a class="blog-header-logo text-dark" href ="">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</a></h5>
+                        <p>@Html.DisplayFor(modelItem => item.Email)<br />@Html.DisplayFor(modelItem => item.ContactNumber)</p>
+                        <p><a class="btn btn-outline-secondary" asp-controller="Places" asp-action="AddOwner" asp-route-placeId="@Model.Place.Id" asp-route-userId="@item.Id">Добавить</a></p>
+                    </div>
+                </div>
+            }
+        else
+        {
+            <div align="center">
+                <h2>Нет сотрудников</h2>
+            </div>
+        }
+    }
+</div>
+
